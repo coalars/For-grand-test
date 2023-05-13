@@ -1,0 +1,36 @@
+// Import necessary libraries
+import 'dart:collection';
+
+/// This function traverses a binary tree
+/// [root] is the root node of the binary tree
+/// [visit] is a function that is called on each node
+void traverseBinaryTree(Node root, Function visit) {
+  // Create a queue to store the nodes
+  Queue<Node> queue = Queue();
+  // Add the root node to the queue
+  queue.add(root);
+  // While the queue is not empty
+  while (queue.isNotEmpty) {
+    // Get the first node from the queue
+    Node node = queue.removeFirst();
+    // Call the visit function on the node
+    visit(node);
+    // If the node has a left child, add it to the queue
+    if (node.left != null) {
+      queue.add(node.left);
+    }
+    // If the node has a right child, add it to the queue
+    if (node.right != null) {
+      queue.add(node.right);
+    }
+  }
+}
+
+/// Node class for a binary tree
+class Node {
+  int data;
+  Node left;
+  Node right;
+
+  Node(this.data, {this.left, this.right});
+}
